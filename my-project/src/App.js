@@ -1,11 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import FunctionalComponent from './components/FunctionalComponent';
+import ClassComponent from './components/ClassComponent';
+import CounterButton from './components/CounterButton';
 
 function App() {
   return (
     <div className="App">
         <FunctionalComponent />
+        <ClassComponent />
+        <CounterButton value={1}/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

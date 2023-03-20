@@ -2,8 +2,8 @@ function FunctionalComponent(){
     const s = "hell-world"
     return(
         <div id={s}>
-            <h1>Hell World!</h1>
-            <p>Det här bir 8 = {4 + 4}</p>
+            <h1>This is from a FunctionalComponent</h1>
+            <p>This will be 8 = {4 + 4}</p>
         </div>
 
     )
