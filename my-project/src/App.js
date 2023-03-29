@@ -10,6 +10,7 @@ import CounterButtonUseState from './components/CounterButtonUseState';
 import CounterButtonStateProps from './components/CounterButtonStateProps';
 import FunctionalUseEffect from './components/FunctionalUseEffect';
 import TestUseEffect from './components/TestUseEffect';
+import FetchUseEffect from './FetchUseEffect';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
 
         <FunctionalUseEffect />
         <TestUseEffect />
+        <FetchUseEffect />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
