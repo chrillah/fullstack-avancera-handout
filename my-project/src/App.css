@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.Greeting {
+    background-color: lightskyblue;
+    font-size: 40px;
+}
+
+.Greeting p {
+    text-decoration: underline;
+}

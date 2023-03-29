@@ -12,6 +12,11 @@ import FunctionalUseEffect from './components/FunctionalUseEffect';
 import TestUseEffect from './components/TestUseEffect';
 import FetchUseEffect from './FetchUseEffect';
 
+import StyleFunctionalComponentClassName from './components/StyleFunctionalComponentClassName'
+import StyleInlineStyle from './components/StyleInlineStyle';
+import StyledComponents from './components/StyledComponents';
+import StyledComponentsProps from './components/StyledComponentsProps';
+
 function App() {
   return (
     <div className="App">
@@ -33,6 +38,14 @@ function App() {
         <FunctionalUseEffect />
         <TestUseEffect />
         <FetchUseEffect />
+
+        {/* Style, className & styled-component */}
+        <StyleFunctionalComponentClassName />
+        <StyleInlineStyle />
+
+        <StyledComponents />
+        <StyledComponentsProps />
+
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
