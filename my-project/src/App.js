@@ -1,67 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
-import FunctionalComponent from './components/FunctionalComponent';
-import ClassComponent from './components/ClassComponent';
-import CounterButton from './components/CounterButton';
-import CounterButton1 from './components/CounterButton1';
-import CounterButton2 from './components/CounterButton2';
-import CounterButton3 from './components/CounterButton3';
-import CounterButtonUseState from './components/CounterButtonUseState';
-import CounterButtonStateProps from './components/CounterButtonStateProps';
-import FunctionalUseEffect from './components/FunctionalUseEffect';
-import TestUseEffect from './components/TestUseEffect';
-import FetchUseEffect from './FetchUseEffect';
+import './App.css'
+// import Home from './pages/Home'
+// import About from './pages/About'
+// import Contact from './pages/Contact'
 
-import StyleFunctionalComponentClassName from './components/StyleFunctionalComponentClassName'
-import StyleInlineStyle from './components/StyleInlineStyle';
-import StyledComponents from './components/StyledComponents';
-import StyledComponentsProps from './components/StyledComponentsProps';
+// import Root from './components/Root'
+
+// import {
+//     createHashRouter,
+//     RouterProvider
+// } from 'react-router-dom'
+
+import {useState} from 'react'
+import SomeComponent from './components/SomeComponent'
+import SomeContext from './components/SomeContext'
+
+// import Router from './components/Router'
+
+// function Root() {
+//     return (
+//         <>
+//             <nav>
+//                 <ul>
+//                     <li>
+//                         <Link to="/">Home</Link>
+//                     </li>
+//                     <li>
+//                         <Link to="/about">About</Link>
+//                     </li>
+//                     <li>
+//                         <Link to="/contact">Contact</Link>
+//                     </li>
+//                 </ul>
+//             </nav>
+//             <Outlet />
+//         </>
+//     )
+// }
 
 function App() {
-  return (
-    <div className="App">
-        {/* Komponenter och props */}
-        <FunctionalComponent />
-        <ClassComponent />
+    const [someValue, setSomeValue] = useState(1)
+    return (
+        <SomeContext.Provider value={{someValue, setSomeValue}}>
+            <SomeComponent />
+        </SomeContext.Provider>
+    )
+    // const router = createHashRouter([
+    //     {
+    //         children: [
+    //             { element: <Home />, path: '/' },
+    //             { element: <About />, path: '/about/:userName' },
+    //             { element: <Contact />, path: '/contact' }
+    //         ],
+    //         element: <Root />
+    //     }
+    // ])
+    // return <RouterProvider router={router} />
 
-        <CounterButton value={1}/>
-        <CounterButton1 />
-        <CounterButton2 />
-        <CounterButton3 />
-
-        {/* useState */}
-        <CounterButtonUseState />
-        <CounterButtonStateProps initialValue={5} />
-
-        {/* useEffect */}
-
-        <FunctionalUseEffect />
-        <TestUseEffect />
-        <FetchUseEffect />
-
-        {/* Style, className & styled-component */}
-        <StyleFunctionalComponentClassName />
-        <StyleInlineStyle />
-
-        <StyledComponents />
-        <StyledComponentsProps />
-
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
 }
 
-export default App;
+export default App
