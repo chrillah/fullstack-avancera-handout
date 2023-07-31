@@ -1,0 +1,114 @@
+den förra uppgifen: const express = require('express')
+const app = express()
+app.use(express.json())
+const PORT = 8080
+
+const cities = [
+    {
+        id: '5347da70-fef3-4e8f-ba49-e8010edba878',
+        name: 'Stockholm',
+        population: 1372565
+    },
+    {
+        id: '4787e794-b3ac-4a63-bba0-03203f78e553',
+        name: 'Göteborg',
+        population: 549839
+    },
+    {
+        id: '4bc43d96-3e84-4695-b777-365dbed33f89',
+        name: 'Malmö',
+        population: 280415
+    },
+    {
+        id: 'ec6b9039-9afb-4632-81aa-ff95338a011a',
+        name: 'Uppsala',
+        population: 140454
+    },
+    {
+        id: '6f9eee1f-b582-4c84-95df-393e443a2cae',
+        name: 'Västerås',
+        population: 110877
+    },
+    {
+        id: '27acb7a0-2b3d-441f-a556-bec0e430992a',
+        name: 'Örebro',
+        population: 107038
+    },
+    {
+        id: '6745e3f4-636a-4ab7-8626-2311120c92c9',
+        name: 'Linköping',
+        population: 104232
+    },
+    {
+        id: 'a8a70019-9382-4215-a5b3-6278eb9232c3',
+        name: 'Helsingborg',
+        population: 97122
+    },
+    {
+        id: '6fc1a491-3710-42f2-936d-e9bf9be4f915',
+        name: 'Jönköping',
+        population: 89396
+    },
+    {
+        id: '45428195-ab40-43d2-ad11-a62933f4a3a8',
+        name: 'Norrköping',
+        population: 87247
+    }
+]
+
+app.get('/', (req, res) => {
+    const name = req.query.name
+    const maxPopulation = req.query.maxPopulation
+    const minPopulation = req.params.minPopulation
+
+    let resultFromCities = cities
+
+    if (name !== null || name !== '' || name !== undefined) {
+        resultFromCities = resultFromCities.filter((city) =>
+            city.name.toLowerCase().includes(name.toLowerCase())
+        )
+    }
+
+    if (minPopulation !== null || minPopulation !== '' || minPopulation !== undefined)  {
+        resultFromCities = resultFromCities.filter(
+            (city) => city.population >= parseInt(minPopulation)
+        )
+    }
+
+    if (maxPopulation !== null || maxPopulation !== '' || maxPopulation !== undefined) {
+        resultFromCities = resultFromCities.filter(
+            (city) => city.population <= parseInt(maxPopulation)
+        )
+    }
+
+    res.json(resultFromCities)
+})
+
+app.get('/:id', (req, res) => {
+    const id = req.params.id
+    console.log(id)
+    const found = cities.find((city) => city.id === id)
+    if (found) {
+        res.status(200).send(found)
+    } else [res.status(404).send('Not found :( ')]
+})
+
+app.get('/', (req, res) => {
+    res.status(200)
+    res.json(cities)
+})
+
+app.listen(PORT, () => {
+    console.log(`${PORT} cities 4`)
+})   Anpassa lösningen på den föregående uppgiften. Kraven från den föregående uppgiften ska förbli uppfyllda.
+
+Gör så att DELETE-anrop till “http://localhost:8080/” följt av en stads id-värde raderar staden i fråga.
+
+Till exempel ska ett DELETE-anrop till Stockholm-resursen http://localhost:8080/5347da70-fef3-4e8f-ba49-e8010edba878, följt av ett GET-anrop till samma adress, resultera i 404 Not Found (eftersom staden inte längre finns).
+
+Att städer tas bort ska även påverka GET-anrop till rotadressen. Till exempel ska http://localhost:8080/?minPopulation=300000&name=st, efter ovanstående DELETE-anrop, besvaras med en tom array…
+
+[]
+… eftersom ingen stad längre matchar dessa kriterium (när Stockholm har tagits bort).
+
+DELETE-anropen ska besvaras med 200 OK eller 404 Not Found beroende på om staden som önskades ta bort finns eller inte. Till exempel: om två DELETE-anrop görs till http://localhost:8080/5347da70-fef3-4e8f-ba49-e8010edba878 ska det första besvaras med 200 OK (eftersom staden fanns då anropet gjordes) medan det andra ska besvaras med 404 Not Found (eftersom staden inte fanns när anropet gjordes).
